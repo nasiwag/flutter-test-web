@@ -6,6 +6,7 @@ phases:
       nodejs: 12
     commands:
       # Install Flutter
+      - git config --global --add safe.directory /codebuild/output/src3714425575/src/flutter  # Add this line to mark the directory as safe
       - wget https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.10.0-stable.tar.xz
       - tar xf flutter_linux_3.10.0-stable.tar.xz
       - export PATH="$PATH:`pwd`/flutter/bin"

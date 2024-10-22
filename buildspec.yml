@@ -2,22 +2,21 @@ version: 0.2
 
 phases:
   install:
-    runtime-versions:
+runtime-versions:
       nodejs: 12
     commands:
-      # Install Flutter
-      - git config --global --add safe.directory /codebuild/output/src3714425575/src/flutter  # Add this line to mark the directory as safe
+      - git config --global --add safe.directory /codebuild/output/src3714425575/src/flutter  # Mark the directory as safe for Git
       - wget https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.10.0-stable.tar.xz
       - tar xf flutter_linux_3.10.0-stable.tar.xz
       - export PATH="$PATH:`pwd`/flutter/bin"
+      - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb  # Install Chrome for web development
+      - sudo dpkg -i google-chrome-stable_current_amd64.deb
+      - sudo apt-get -f install -y
+      - sudo apt-get update
+      - sudo apt-get install -y clang cmake ninja-build libgtk-3-dev  # Install Linux development dependencies if needed
+  build:
+    commands:
       - flutter doctor
       - flutter precache
       - flutter config --enable-web
       - flutter pub get
-  build:
-    commands:
-      - flutter build web
-artifacts:
-  files:
-    - '**/*'
-  base-directory: build/web

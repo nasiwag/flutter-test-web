@@ -2,7 +2,7 @@ version: 0.2
 
 phases:
   install:
-runtime-versions:
+      runtime-versions:
       nodejs: 12
     commands:
       - git config --global --add safe.directory /codebuild/output/src3714425575/src/flutter  # Mark the directory as safe for Git
